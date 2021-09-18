@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link rel="icon" href="/img/logo_160px.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV22KK3LRN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CV22KK3LRN');
+  </script>
+
+  <!-- Mapbox Files -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<body>
+  <div class="main-content">
+
+
+
+
+    {{>header}}
+
+    <h5>Our search feature will price alternative weeks so you can choose the best possible price. </h5>
+
+    <div class="search-box">
+      <form>
+        <div class="flex-container-upper">
+          <input id="my_field" placeholder="Search for hotel name" type="text" value="" autocomplete="off">
+          <small> Check in </small>
+          <input type="date" id="checkin" name="trip-start" value=" " min="2021-08-05" max="2022-12-31">
+          <small> Check out </small>
+          <input type="date" id="checkout" name="trip-start" value=" " min="2021-08-05" max="2022-12-31">
+          <b> &nbsp; </b>
+          <img src='/img/icon_adult.png' style="width:20px;height:20px">
+          <select id="numberAdults">
+            <option value="1">1</option>
+            <option value="2" selected="selected">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <button>Search</button>
+        </div>
+      </form>
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <small>Hotel suggestions...</small>
+          <p id="message-option-1" value="" onclick="change1()"></p>
+          <p id="message-option-2" value="" onclick="change2()"></p>
+          <p id="message-option-3" value="" onclick="change3()"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <p id="message-load"></p>
+
+
+
+  <!-- Loading info/Hotel name -->
+
+
+  <div class="loading-hotel-name">
+    <h3 id="message-1"></h3>
+    <img class="hotel-img-stars" src="" alt="img" style="width: 160px; height: 40px;" ;>
+  </div>
+
+
+  <div class="hotelResults">
+
+    <!-- Hotel IMAGES -->
+
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 5</div>
+        <img class="id-of-img-tag" src="" style="width: 100%; height: 400px; object-fit: cover;">
+        <div class="text"> </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 5</div>
+        <img class="id-of-img-tag2" src="" style="width: 100%; height: 400px; object-fit: cover;">
+        <div class="text"> </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 5</div>
+        <img class="id-of-img-tag3" src="" style="width: 100%; height: 400px; object-fit: cover;">
+        <div class="text"> </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 5</div>
+        <img class="id-of-img-tag4" src="" style="width: 100%; height: 400px; object-fit: cover;">
+        <div class="text"> </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">5 / 5</div>
+        <img class="id-of-img-tag5" src="" style="width: 100%; height: 400px; object-fit: cover;">
+        <div class="text"> </div>
+      </div>
+    </div>
+
+
+    <!-- Hotel IMAGE button dots below -->
+    <br>
+    <div style="text-align:center">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+
+    <br>
+
+    <!-- Hotel location and tag line -->
+
+    <div class="hotelLocation">
+      <p id="message-18"></p>
+      </h4>
+      <h5 id="message-11"></h5>
+      <br>
+
+      Hotel Stars:
+      <h3 id="message-13"></h3>
+      <br>
+    </div>
+
+
+    <br>
+    <!-- Hotel reviews and rating info -->
+
+
+    <span class="heading">Customer Rating</span>
+
+    <b id="message-14"></b>
+    Average based on <b id="message-15"></b> reviews
+
+    <hr style="border:3px solid #f1f1f1">
+
+
+
+    <!-- Checkin date and price for intended date -->
+    <h5>Preferred Date:</h5>
+    <small>Check in Date: </small>
+    <small id="message-2"></small>
+    <b id="message-3"></b>
+
+    <a href="hotel-link-1" id="hotel-link-1" target="_blank">Book Now</a>
+
+    <br>
+    <!-- Checkin date and price for +1 week -->
+    <h5>Alternative Weeks</h5>
+    <small>Check in Date: </small>
+    <small id="message-4"></small>
+    <b id="message-5"></b>
+
+    <a href="hotel-link-2" id="hotel-link-2" target="_blank">Book Now</a>
+
+    <br>
+
+
+    <h4>Location</h4>
+    <!-- Map bOx -->
+
+    <div class="location-container">
+      <div class="item>">
+        <iframe
+          src='https://api.mapbox.com/styles/v1/mapbox/streets-v11.html?zoomwheel=false&access_token=pk.eyJ1Ijoic2JwODk4NCIsImEiOiJja3Jrcm1nZTcxOWdmMnBvNXhycWZocXYwIn0.YagRvMDHc4suDLQnZKbAEg#15/'
+          style="width: 100%; height: 250px; object-fit: cover" ;>
+        </iframe>
+      </div>
+      <div class="item>">
+        <!-- Image of local area  style="width='40%'; height='200px' object-fit: cover;" -->
+        <img class="id-of-img-tag17" src="" alt="img" style="width: 100%; height: 250px; object-fit: cover" ;>
+      </div>
+    </div>
+
+    <!-- IGNORE THIS SECTION BELOW -->
+    <font style="font-size:0px"> - text
+      <p id="message-6"></p>
+      <p id="message-7"></p>
+      <p id="message-8"></p>
+      <p id="message-9"></p>
+      <p id="message-10"></p>
+      <p id="message-12"></p>
+      <p id="message-14"></p>
+      <p id="message-15"></p>
+      <p id="message-17"></p>
+      <p id="message-20"></p>
+      <p id="message-21"></p>
+      <p id="message-22"></p>
+    </font>
+
+  </div>
+
+  </div>
+
+  {{>footer}}
+
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 3000); // Change image every 2 seconds
+    }
+  </script>
+
+
+  <script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

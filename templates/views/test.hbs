@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>About</title>
+  <link rel="icon" href="/img/weather.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="top1">
+    <select id="currencySelect">
+      <option value="USD">USD</option>
+      <option value="GBP" selected="selected">GBP</option>
+      <option value="EUR">EUR</option>
+    </select>
+  </div>
+
+  <div class="main-content">
+    {{>header}}
+  </div>
+
+  <div class="search-box">
+    <form>
+      <div class="flex-container-upper">
+          <input id="my_field" placeholder="Search for hotel name" type="text" value="" />
+          <!-- insert myModal into here -->
+        <button>Search</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Hotel suggestions...</p>
+      <p id="message-option-1" value="" onclick="change1()"></p>
+      <p id="message-option-2" value="" onclick="change2()"></p>
+      <p id="message-option-3" value="" onclick="change3()"></p>
+    </div>
+  </div>
+
+  <p id="message-load"></p>
+
+
+
+
+
+
+
+
+
+
+  <p> Test Function</p>
+  <p> contact@hotelsavy.com</p>
+
+  <script src="/js/app2.js"></script>
+
+  {{>footer}}
+
+</body>
+
+</html>
